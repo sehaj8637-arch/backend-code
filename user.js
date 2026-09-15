@@ -42,7 +42,25 @@ async function getUsers() {
 	return User.find().sort({ createdAt: -1 });
 }
 
+async function getUserById(id) {
+	return User.findById(id);
+}
+
+async function updateUser(id, changes) {
+	return User.findByIdAndUpdate(id, changes, {
+		new: true,
+		runValidators: true,
+	});
+}
+
+async function deleteUser(id) {
+	return User.findByIdAndDelete(id);
+}
+
 module.exports = {
 	createUser,
 	getUsers,
+	getUserById,
+	updateUser,
+	deleteUser,
 };
